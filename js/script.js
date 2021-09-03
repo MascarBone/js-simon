@@ -40,25 +40,21 @@ let timer = setInterval(function(){
         listaFinale = confrontaArray(listaUtente,listaZero);
 
         console.log(listaFinale);
+
+        output (listaFinale);
     }
     console.log(i);
 }, 1000);
 
-// let arra1 = [1,2];
-// let arra2 = [3,4];
-// let arra3 = [];
-// console.log(arra1);
-// console.log(arra2);
-// console.log(arra3);
 
-// // arra3 = arra1.splice(0,1);
-// arra3 = arra2.concat(arra1);
-// arra3 = arra3.concat(arra1);
 
-// console.log(arra1);
-// console.log(arra2);
-// console.log(arra3);
 
+function output (arr)
+{
+    alert("Sono stati indovinati i seguenti " + arr.length + " numeri\n" + arr);
+}
+
+// Funzione per il confronto di due array, restituisce un array contente i valori trovati uguali.
 function confrontaArray(arr1, arr2)
 {
     let listaIndovinati = [];
@@ -68,11 +64,11 @@ function confrontaArray(arr1, arr2)
         {
             if (arr1[i] == arr2[j])
             {                
-                listaIndovinati = listaIndovinati.concat(arr1.splice(i,1));
-                arr2.splice(j,1);
-                console.log(listaIndovinati);
-                console.log(arr1);
-                console.log(arr2);
+                listaIndovinati.push(arr1[i]);
+                break;
+                // console.log(listaIndovinati);
+                // console.log(arr1);
+                // console.log(arr2);
             }
         }
     }
