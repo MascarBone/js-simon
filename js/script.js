@@ -21,9 +21,6 @@ const cap = 5;
 
 listaZero = randomGen(1, 100, 5);
 console.log (listaZero);
-
-// document.getElementById('alert').innerHTML = listaZero;
-
 alert(listaZero);
 
 // Variabile per la funzione setInterval
@@ -31,7 +28,7 @@ let i=0;
 
 let timer = setInterval(function(){
     i++;
-    if ( i >= 1)
+    if ( i >= 10)
     {
         clearInterval(timer);
         // Chiamiamo la funzione per far inserire i valori all'utente
@@ -51,7 +48,12 @@ let timer = setInterval(function(){
 
 function output (arr)
 {
-    alert("Sono stati indovinati i seguenti " + arr.length + " numeri\n" + arr);
+    document.getElementById('alert').innerHTML += '<h1>I numeri indovinati sono:</h1>';
+    document.getElementById('alert').innerHTML += '<h2>' + arr.length + '</h2>';
+    for (let i = 0; i < arr.length; i++)
+    {
+        document.getElementById('alert').innerHTML += '<span class="px-3">' + arr[i] + '</span>';
+    }
 }
 
 // Funzione per il confronto di due array, restituisce un array contente i valori trovati uguali.
