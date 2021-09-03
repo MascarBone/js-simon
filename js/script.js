@@ -31,7 +31,7 @@ let i=0;
 
 let timer = setInterval(function(){
     i++;
-    if ( i >= 3)
+    if ( i >= 1)
     {
         clearInterval(timer);
         // Chiamiamo la funzione per far inserire i valori all'utente
@@ -45,14 +45,19 @@ let timer = setInterval(function(){
 }, 1000);
 
 // let arra1 = [1,2];
-// let arra2 = [1,2];
+// let arra2 = [3,4];
 // let arra3 = [];
 // console.log(arra1);
+// console.log(arra2);
 // console.log(arra3);
 
-// arra3 = arra1.splice(0,1);
-// console.log(arra3);
+// // arra3 = arra1.splice(0,1);
+// arra3 = arra2.concat(arra1);
+// arra3 = arra3.concat(arra1);
+
 // console.log(arra1);
+// console.log(arra2);
+// console.log(arra3);
 
 function confrontaArray(arr1, arr2)
 {
@@ -62,16 +67,16 @@ function confrontaArray(arr1, arr2)
         for (let j = 0; j < arr1.length; j++)
         {
             if (arr1[i] == arr2[j])
-            {
-                
-                listaIndovinati.concat(arr1.splice(i,1));
+            {                
+                listaIndovinati = listaIndovinati.concat(arr1.splice(i,1));
                 arr2.splice(j,1);
                 console.log(listaIndovinati);
-                console.log("arr1 " + arr1);
-                console.log("arr2 " + arr2);
+                console.log(arr1);
+                console.log(arr2);
             }
         }
     }
+    return listaIndovinati;
 }
 
 // Funzione per chiedere all'utente di inserire i numeri
