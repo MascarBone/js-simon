@@ -28,17 +28,17 @@ let i=0;
 
 let timer = setInterval(function(){
     i++;
-    if ( i >= 10)
+    if ( i >= 3)
     {
         clearInterval(timer);
         // Chiamiamo la funzione per far inserire i valori all'utente
-        listaUtente = inserimentoUtente(cap);
+        listaUtente = inserimentoUtente(cap, listaZero);
         // Chiamiamo la funzione per confrontare i due array
-        listaFinale = confrontaArray(listaUtente,listaZero);
+        // listaFinale = confrontaArray(listaUtente,listaZero);
 
-        console.log(listaFinale);
+        console.log(listaUtente);
 
-        output (listaFinale);
+        output (listaUtente);
     }
     console.log(i);
 }, 1000);
@@ -57,42 +57,65 @@ function output (arr)
 }
 
 // Funzione per il confronto di due array, restituisce un array contente i valori trovati uguali.
-function confrontaArray(arr1, arr2)
-{
-    let listaIndovinati = [];
-    for (let i = 0; i < arr1.length; i++)
-    {
-        for (let j = 0; j < arr1.length; j++)
-        {
-            if (arr1[i] == arr2[j])
-            {                
-                listaIndovinati.push(arr1[i]);
-                break;
-                // console.log(listaIndovinati);
-                // console.log(arr1);
-                // console.log(arr2);
-            }
-        }
-    }
-    return listaIndovinati;
-}
+// function confrontaArray(arr1, arr2)
+// {
+//     let listaIndovinati = [];
+//     for (let i = 0; i < arr1.length; i++)
+//     {
+//         for (let j = 0; j < arr1.length; j++)
+//         {
+//             if (arr1[i] == arr2[j])
+//             {                
+//                 listaIndovinati.push(arr1[i]);
+//                 break;
+//                 // console.log(listaIndovinati);
+//                 // console.log(arr1);
+//                 // console.log(arr2);
+//             }
+//         }
+//     }
+//     return listaIndovinati;
+// }
 
 // Funzione per chiedere all'utente di inserire i numeri
-function inserimentoUtente(index) {
+// function inserimentoUtente(index) {
+//     let arrUtente = [];
+//     do
+//     {
+//         let input = parseInt(prompt("Inserisci uno dei numeri visualizzati nell'alert"));
+//         if (arrUtente.includes(input))
+//         {
+//             alert("Hai già inserito questo numero.");
+//         }
+//         else
+//         {
+//             arrUtente.push(input);
+//         }
+//     } while (arrUtente.length < index)
+
+//     return arrUtente;
+// }
+
+function inserimentoUtente(index, arr) {
     let arrUtente = [];
-    do
+
+    for (let i = 0; i < index; i++)
     {
-        let input = parseInt(prompt("Inserisci uno dei numeri visualizzati nell'alert"));
-        if (arrUtente.includes(input))
+        let input;
+        do
         {
-            alert("Hai già inserito questo numero.");
-        }
-        else
+            input = parseInt(prompt("Inserisci uno dei numeri visualizzati nell'alert"));
+            if (arrUtente.includes(input))
+            {
+                alert('Hai già inserito questo numero.');
+            }
+        } while (arrUtente.includes(input))
+        if (arr.includes(input))
         {
             arrUtente.push(input);
         }
-    } while (arrUtente.length < index)
-
+    }    
+    
     return arrUtente;
 }
 
