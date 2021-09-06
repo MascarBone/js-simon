@@ -73,8 +73,12 @@ function inserimentoUtente(index, arr) {
             {
                 alert('Hai già inserito questo numero: ' + input);
                 input = false;
+            }else if(isNaN(input))
+            {
+                alert('Il valore inserito non è un numero');
             }
-        } while (!isNaN(input) && input === false)
+            console.log(input)
+        } while (isNaN(input) || input === false)
         // Una volta effettuato il controllo sul valore inserito, ed essere sicuri che sia un numero valido
         // La condizione controlla se è uguale ad uno dei valori generato casualmente.
         // Altrimenti lo salva in un array temporaneo per ricordare all'utente i valori già inseriti
