@@ -12,12 +12,8 @@ let listaZero = [];
 // Array per contenere i numeri inseriti dall'utente
 let listaUtente = [];
 
-// Array per contenere il risultato del confronto tra listaZero e listaUtente
-let listaFinale = [];
-
 // Limite preimpostato per il numero di cifre
 const cap = 5;
-
 
 listaZero = randomGen(1, 100, 5);
 console.log (listaZero);
@@ -33,8 +29,6 @@ let timer = setInterval(function(){
         clearInterval(timer);
         // Chiamiamo la funzione per far inserire i valori all'utente
         listaUtente = inserimentoUtente(cap, listaZero);
-        // Chiamiamo la funzione per confrontare i due array
-        // listaFinale = confrontaArray(listaUtente,listaZero);
 
         console.log(listaUtente);
 
@@ -42,6 +36,7 @@ let timer = setInterval(function(){
     }
     console.log(i);
 }, 1000);
+
 
 
 
@@ -56,68 +51,51 @@ function output (arr)
     }
 }
 
-// Funzione per il confronto di due array, restituisce un array contente i valori trovati uguali.
-// function confrontaArray(arr1, arr2)
-// {
-//     let listaIndovinati = [];
-//     for (let i = 0; i < arr1.length; i++)
-//     {
-//         for (let j = 0; j < arr1.length; j++)
-//         {
-//             if (arr1[i] == arr2[j])
-//             {                
-//                 listaIndovinati.push(arr1[i]);
-//                 break;
-//                 // console.log(listaIndovinati);
-//                 // console.log(arr1);
-//                 // console.log(arr2);
-//             }
-//         }
-//     }
-//     return listaIndovinati;
-// }
 
-// Funzione per chiedere all'utente di inserire i numeri
-// function inserimentoUtente(index) {
-//     let arrUtente = [];
-//     do
-//     {
-//         let input = parseInt(prompt("Inserisci uno dei numeri visualizzati nell'alert"));
-//         if (arrUtente.includes(input))
-//         {
-//             alert("Hai già inserito questo numero.");
-//         }
-//         else
-//         {
-//             arrUtente.push(input);
-//         }
-//     } while (arrUtente.length < index)
 
-//     return arrUtente;
-// }
 
+
+// La funzione di inserimentoUtente permette l'inserimento all'utente di un numero di valori fino al valore di index
+// Inoltre controlla che il valore sia valido e non ripetuto, salvandolo solo nel caso che sia verificato.
 function inserimentoUtente(index, arr) {
     let arrUtente = [];
+    let arrTries = [];
 
+    // Ciclo for per l'inserimento del valore in input nell'array utente
     for (let i = 0; i < index; i++)
     {
         let input;
+        // Il ciclo do-while controlla che il valore non sia NaN e che non sia un valore già inserito in precedenza
         do
         {
             input = parseInt(prompt("Inserisci uno dei numeri visualizzati nell'alert"));
-            if (arrUtente.includes(input))
+            if (arrUtente.includes(input) || arrTries.includes(input))
             {
-                alert('Hai già inserito questo numero.');
+                alert('Hai già inserito questo numero: ' + input);
+                input = false;
             }
-        } while (arrUtente.includes(input))
+        } while (!isNaN(input) && input === false)
+        // Una volta effettuato il controllo sul valore inserito, ed essere sicuri che sia un numero valido
+        // La condizione controlla se è uguale ad uno dei valori generato casualmente.
+        // Altrimenti lo salva in un array temporaneo per ricordare all'utente i valori già inseriti
         if (arr.includes(input))
         {
             arrUtente.push(input);
+        }else 
+        {            
+            arrTries.push(input);
         }
+        console.log(arrUtente);
+        console.log(arrTries);
+
     }    
     
     return arrUtente;
 }
+
+
+
+
 
 // Funzione per generare casualmente 5 numeri numeri unici, restituisce lo stesso array
 function randomGen (min, max, cap) {
