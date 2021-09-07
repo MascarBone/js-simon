@@ -14,28 +14,23 @@ let listaUtente = [];
 
 // Limite preimpostato per il numero di cifre
 const cap = 5;
+// Limite del timer
+const timer = 3000;
 
 listaZero = randomGen(1, 100, 5);
 console.log (listaZero);
 alert(listaZero);
 
-// Variabile per la funzione setInterval
-let i=0;
+setTimeout(function(){
+    
+    // Chiamiamo la funzione per far inserire i valori all'utente
+    listaUtente = inserimentoUtente(cap, listaZero);
 
-let timer = setInterval(function(){
-    i++;
-    if ( i >= 3)
-    {
-        clearInterval(timer);
-        // Chiamiamo la funzione per far inserire i valori all'utente
-        listaUtente = inserimentoUtente(cap, listaZero);
+    console.log(listaUtente);
 
-        console.log(listaUtente);
-
-        output (listaUtente);
-    }
-    console.log(i);
-}, 1000);
+    output (listaUtente);
+    
+}, timer);
 
 
 
